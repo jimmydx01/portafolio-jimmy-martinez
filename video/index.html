@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fiestas y Eventos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f4fb;--card:#fff;--ink:#2a1533;--mut:#7b6a85;--line:#e6dcee;--plum:#4a1d5c;--rose:#d63a7a;--gold:#f2b632;--ok:#1f9d74;--bad:#d64545;--warn:#c98207;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#180d1f;--card:#26152f;--ink:#f4eaf8;--mut:#b7a3c2;--line:#3d2649;--plum:#c58ae0;--rose:#ff6aa3;--ok:#4fd1a1;--bad:#ff7b7b;--warn:#f2b632}}
+:root[data-theme="dark"]{--bg:#180d1f;--card:#26152f;--ink:#f4eaf8;--mut:#b7a3c2;--line:#3d2649;--plum:#c58ae0;--rose:#ff6aa3;--ok:#4fd1a1;--bad:#ff7b7b;--warn:#f2b632}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Bricolage Grotesque',system-ui,-apple-system,Segoe UI,sans-serif;margin:0;line-height:1.45}
+.wrap{max-width:1100px;margin:0 auto;padding:1rem}.mut{color:var(--mut);font-size:.9rem}
+.hero{background:linear-gradient(120deg,#4a1d5c,#7a2a78 60%,#d63a7a);color:#fff}.hero .wrap{padding:3rem 1rem}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:800;margin:0;line-height:1.05}.hero p{max-width:34rem;font-size:1.1rem;opacity:.92}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1rem}
+.sv{padding:0;overflow:hidden;display:flex;flex-direction:column}.sv .im{aspect-ratio:4/3;background:linear-gradient(135deg,#f2b632,#d63a7a);display:grid;place-items:center;font-size:3.5rem}.sv img{width:100%;height:100%;object-fit:cover;display:block}
+.sv .bd{padding:1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}.sv h3{margin:0;color:var(--plum);font-size:1.15rem}.sv p{margin:0;color:var(--mut);flex:1}
+.btn{padding:.5rem .9rem;border-radius:10px;font:inherit;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--plum)}.btn.p{background:var(--rose);border-color:var(--rose);color:#fff}.btn.g{background:var(--gold);border-color:var(--gold);color:#2a1533}.btn.d{color:var(--bad)}
+.lnk{background:none;border:0;color:var(--mut);cursor:pointer;text-decoration:underline;font:inherit}
+input,select,textarea{width:100%;padding:.55rem .7rem;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+label{font-size:.8rem;color:var(--mut);font-weight:600;display:block;margin-bottom:.2rem}
+.f{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end}
+h2{font-weight:800;margin:1.4rem 0 .7rem;font-size:1.25rem}
+.bar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;padding:.8rem 1rem;background:var(--plum);color:#fff}
+:root[data-theme="dark"] .bar{color:#180d1f}
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}.tab{padding:.5rem 1rem;border-radius:999px;border:0;font:inherit;font-weight:600;background:transparent;color:var(--mut);cursor:pointer}.tab.on{background:var(--plum);color:#fff}
+:root[data-theme="dark"] .tab.on{color:#180d1f}
+.chip{display:inline-block;padding:.15rem .6rem;border-radius:999px;font-size:.78rem;font-weight:700;margin:.15rem .25rem .15rem 0}
+.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}.low{background:color-mix(in srgb,var(--warn) 22%,transparent);color:var(--warn)}
+.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}.rent{background:color-mix(in srgb,var(--plum) 18%,transparent);color:var(--plum)}
+.tbl{overflow-x:auto;padding:.4rem}table{width:100%;border-collapse:collapse;min-width:640px}th{text-align:left;font-size:.8rem;color:var(--mut);padding:.6rem}td{padding:.6rem;border-top:1px solid var(--line);vertical-align:top}
+.th{width:52px;height:52px;border-radius:10px;object-fit:cover;background:var(--line);display:block}
+.ev{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem}
+.ed{display:grid;gap:.6rem}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(1rem + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:.7rem 1.1rem;border-radius:12px;max-width:90%;z-index:9}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<div id="app" data-dyn></div>
+<div id="toast" role="status" data-dyn hidden></div>
+<script id="pubdata" type="application/json">{"wa":"","sv":[
+{"t":"Alquiler de sillas y mesas","d":"Sillas Tiffany, plegables y mesas redondas para cualquier tamaño de evento.","e":"🪑","img":""},
+{"t":"Manteles y cubresillas","d":"Colores y telas a elección, listos y planchados.","e":"🍽️","img":""},
+{"t":"Decoración con globos","d":"Arcos, columnas y mesas de dulces personalizadas.","e":"🎈","img":""},
+{"t":"Iluminación y ambientación","d":"Guirnaldas, reflectores LED y letras luminosas.","e":"💡","img":""},
+{"t":"Cortinas y fondos","d":"Telones para fotos, ceremonias y escenarios.","e":"🪟","img":""},
+{"t":"Centros de mesa florales","d":"Arreglos frescos o artificiales según tu presupuesto.","e":"💐","img":""},
+{"t":"Cumpleaños y baby shower","d":"Paquetes completos de decoración temática.","e":"🎂","img":""},
+{"t":"Bodas y quinceañeras","d":"Montaje total: sillas, mesas, mantelería, luces y flores.","e":"💍","img":""},
+{"t":"Sonido y animación","d":"Parlante, micrófono y música para el evento.","e":"🔊","img":""}]}</script>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const K='fiestas-v2',CK='fiestas-cred',today=()=>new Date().toISOString().slice(0,10),fmt=d=>d?d.split('-').reverse().join('/'):'sin fecha';
+let PUB=JSON.parse($('#pubdata').textContent),DB,D={items:[]},dirty=0;
+try{DB=JSON.parse(localStorage.getItem(K))||{}}catch(e){DB={}}
+DB.prods=DB.prods||[];DB.events=DB.events||[];DB.loans=DB.loans||[];
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(DB))}catch(e){toast('No se pudo guardar: la memoria del navegador está llena. Usa fotos más pequeñas o elimina algunas.')}};
+const cred=()=>{try{return JSON.parse(localStorage.getItem(CK))}catch(e){return null}};
+const H=async(u,p)=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('fe|'+u+'|'+p)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+const isAdm=()=>sessionStorage.getItem('adm')=='1';
+let V=sessionStorage.getItem('v')||'pub';if(V!='pub'&&V!='login'&&!isAdm())V='pub';
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,4500)}
+const shrink=(f,m=640)=>new Promise(r=>{const fr=new FileReader;fr.onload=()=>{const i=new Image;i.onload=()=>{const k=Math.min(1,m/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.72))};i.onerror=()=>r('');i.src=fr.result};fr.onerror=()=>r('');fr.readAsDataURL(f)});
+const P=id=>DB.prods.find(p=>p.id==id);
+const outEv=id=>DB.events.filter(e=>e.st!='ret').reduce((a,e)=>a+e.items.filter(i=>i.p==id).reduce((s,i)=>s+i.q,0),0);
+const outLn=id=>DB.loans.filter(l=>!l.b&&l.p==id).reduce((s,l)=>s+l.q,0);
+const av=p=>p.q-outEv(p.id)-outLn(p.id);
+function go(v){V=v;sessionStorage.setItem('v',v);D={items:[]};render();scrollTo(0,0)}
+function render(){$('#app').innerHTML=V=='pub'?pubV():V=='login'?loginV():admV()}
+
+/* ---------- PÚBLICO ---------- */
+function pubV(){return`<header class="hero"><div class="wrap"><h1>Fiestas y Eventos</h1><p>Sillas, mesas, mantelería, luces, cortinas y decoración para tu celebración. Elige un servicio y escríbenos.</p></div></header>
+<main class="wrap"><div class="grid">${PUB.sv.map((s,i)=>`<article class="card sv"><div class="im">${s.img?`<img src="${esc(s.img)}" alt="${esc(s.t)}">`:esc(s.e||'🎉')}</div><div class="bd"><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><button class="btn p" data-a="c" data-i="${i}">Contactar</button></div></article>`).join('')}</div></main>
+<footer class="wrap"><button class="lnk" data-a="go" data-i="${isAdm()?'inv':'login'}">Acceso administrador</button></footer>`}
+
+/* ---------- LOGIN ---------- */
+function loginV(){const n=!cred();return`<main class="wrap" style="max-width:420px"><div class="card ed" style="margin-top:3rem"><h2 style="margin:0">${n?'Crea tu usuario':'Acceso administrador'}</h2>
+${n?'<p class="mut" style="margin:0">Primera vez en este navegador: elige tu usuario y contraseña.</p>':''}
+<div><label>Usuario</label><input data-d="u" value="${esc(D.u)}" autocomplete="username"></div>
+<div><label>Contraseña</label><input type="password" data-d="p" value="${esc(D.p)}" autocomplete="${n?'new-password':'current-password'}"></div>
+${n?`<div><label>Repite la contraseña</label><input type="password" data-d="p2" value="${esc(D.p2)}"></div>`:''}
+<button class="btn p" data-a="login">${n?'Crear y entrar':'Entrar'}</button><button class="lnk" data-a="go" data-i="pub">Volver a la página pública</button></div></main>`}
+
+/* ---------- ADMIN ---------- */
+function admV(){const T=[['inv','Inventario'],['ev','Eventos'],['loan','Préstamos'],['srv','Servicios y contacto']];
+return`<div class="bar"><b>Panel del negocio</b><span><button class="btn" data-a="go" data-i="pub">Ver página pública</button> <button class="btn" data-a="logout">Cerrar sesión</button></span></div>
+<main class="wrap"><nav class="tabs">${T.map(t=>`<button class="tab ${V==t[0]?'on':''}" data-a="go" data-i="${t[0]}">${t[1]}</button>`).join('')}</nav>
+${V=='inv'?invV():V=='ev'?evV():V=='loan'?loanV():srvV()}</main>`}
+
+function invV(){const z=DB.prods.filter(p=>av(p)<=0);
+const hold=p=>DB.events.filter(e=>e.st!='ret').flatMap(e=>e.items.filter(i=>i.p==p.id).map(i=>`<span class="chip rent">Alquilado: ${esc(e.cl)} ×${i.q}</span>`)).concat(DB.loans.filter(l=>!l.b&&l.p==p.id).map(l=>`<span class="chip low">Prestado: ${esc(l.who)} ×${l.q}</span>`)).join('');
+return`${z.length?`<div class="card" style="border-color:var(--warn)"><b style="color:var(--warn)">Sin unidades en bodega:</b> ${z.map(p=>esc(p.n)).join(', ')}</div>`:''}
+<h2>Agregar producto</h2><div class="card"><div class="f">
+<div><label>Nombre</label><input data-d="pn" value="${esc(D.pn)}" placeholder="Silla Tiffany blanca"></div>
+<div><label>Categoría</label><input data-d="pc" value="${esc(D.pc)}" placeholder="Sillas"></div>
+<div><label>Cantidad total</label><input type="number" min="1" data-d="pq" value="${esc(D.pq??1)}"></div>
+<div><label>Foto</label><input type="file" accept="image/*" data-f="p"></div>
+${D.img?`<img class="th" src="${esc(D.img)}" alt="Vista previa">`:''}
+<button class="btn p" data-a="addp">Agregar producto</button></div></div>
+<h2>Productos</h2><div class="card tbl"><table><thead><tr><th></th><th>Producto</th><th>Total</th><th>En bodega</th><th>Estado</th><th>¿Con quién está?</th><th>Ajustar</th></tr></thead><tbody>
+${DB.prods.map(p=>{const a=av(p);return`<tr><td>${p.img?`<img class="th" src="${esc(p.img)}" alt="">`:'<div class="th"></div>'}</td><td><b>${esc(p.n)}</b><div class="mut">${esc(p.c)}</div></td><td>${p.q}</td><td><b>${a}</b></td>
+<td>${a>0?'<span class="chip ok">Disponible</span>':'<span class="chip bad">No disponible</span>'}</td><td>${hold(p)||'<span class="mut">En bodega</span>'}</td>
+<td><button class="btn" data-a="pdec" data-i="${p.id}" aria-label="Restar una unidad">−</button> <button class="btn" data-a="pinc" data-i="${p.id}" aria-label="Sumar una unidad">+</button> <button class="btn d" data-a="pdel" data-i="${p.id}">Eliminar</button></td></tr>`}).join('')||'<tr><td colspan="7" class="mut">Aún no hay productos. Agrega el primero arriba.</td></tr>'}</tbody></table></div>`}
+
+function evCard(e){const chips=e.items.map(i=>`<span class="chip rent">${esc(P(i.p)?.n||'Producto eliminado')} ×${i.q}</span>`).join('');
+const b=e.st=='pend'?`<button class="btn g" data-a="edone" data-i="${e.id}">Marcar realizado</button> <button class="btn d" data-a="edel" data-i="${e.id}">Cancelar</button>`:e.st=='done'?`<button class="btn g" data-a="eback" data-i="${e.id}">Marcar retirado</button>`:'';
+return`<article class="card ev"><div><b>${esc(e.n)}</b>${e.st=='pend'&&e.d&&e.d<today()?' <span class="chip low">Fecha ya pasó</span>':''}<div class="mut">Cliente: ${esc(e.cl)}</div><div class="mut">Fecha: ${fmt(e.d)}${e.pl?`. Lugar: ${esc(e.pl)}`:''}</div><div>${chips}</div></div><div>${b}</div></article>`}
+function evV(){const s=(st,asc)=>DB.events.filter(e=>e.st==st).sort((a,b)=>asc?(a.d||'9').localeCompare(b.d||'9'):(b.d||'').localeCompare(a.d||''));
+const ip=D.ip||DB.prods[0]?.id,pr=P(ip),used=D.items.filter(i=>i.p==ip).reduce((s,i)=>s+i.q,0);
+const sec=(t,l,em)=>`<h2>${t} (${l.length})</h2>${l.map(evCard).join('')||`<p class="mut">${em}</p>`}`;
+return`<h2 style="margin-top:0">Nuevo evento</h2><div class="card"><div class="f">
+<div><label>Cliente</label><input data-d="cl" value="${esc(D.cl)}"></div><div><label>Evento</label><input data-d="en" value="${esc(D.en)}" placeholder="Boda, cumpleaños..."></div>
+<div><label>Fecha</label><input type="date" data-d="ed" value="${esc(D.ed)}"></div><div><label>Lugar</label><input data-d="ep" value="${esc(D.ep)}"></div></div>
+<h3 style="margin:1rem 0 .5rem">Productos del evento</h3><div class="f"><div><label>Producto</label><select data-d="ip">${DB.prods.map(p=>`<option value="${p.id}" ${p.id==ip?'selected':''}>${esc(p.n)}</option>`).join('')}</select></div>
+<div><label>Cantidad${pr?` (quedan ${av(pr)-used})`:''}</label><input type="number" min="1" data-d="iq" value="${esc(D.iq??1)}"></div><button class="btn" data-a="ei">Agregar a la lista</button></div>
+<div style="margin:.6rem 0">${D.items.map((i,k)=>`<span class="chip rent">${esc(P(i.p)?.n)} ×${i.q} <button class="lnk" data-a="er" data-i="${k}" aria-label="Quitar">quitar</button></span>`).join('')||'<span class="mut">Todavía no agregaste productos.</span>'}</div>
+<button class="btn p" data-a="es">Guardar evento</button></div>
+${sec('Pendientes',s('pend',1),'No hay eventos pendientes.')}${sec('Por retirar',s('done',1),'No hay nada por retirar.')}${sec('Retirados',s('ret',0),'Aún no hay eventos retirados.')}`}
+
+function loanV(){const ip=D.lp||DB.prods[0]?.id,pr=P(ip),L=b=>DB.loans.filter(l=>!!l.b==b).sort((a,c)=>c.o.localeCompare(a.o));
+const row=l=>`<article class="card ev"><div><b>${esc(l.who)}</b><div class="mut">${esc(P(l.p)?.n||'Producto eliminado')} ×${l.q}. Salió el ${fmt(l.o)}${l.b?`. Devuelto el ${fmt(l.b)}`:''}</div></div>${l.b?'':`<button class="btn g" data-a="lb" data-i="${l.id}">Marcar devuelto</button>`}</article>`;
+return`<h2 style="margin-top:0">Nuevo préstamo</h2><div class="card"><div class="f">
+<div><label>Persona</label><input data-d="lw" value="${esc(D.lw)}"></div>
+<div><label>Producto</label><select data-d="lp">${DB.prods.map(p=>`<option value="${p.id}" ${p.id==ip?'selected':''}>${esc(p.n)}</option>`).join('')}</select></div>
+<div><label>Cantidad${pr?` (quedan ${av(pr)})`:''}</label><input type="number" min="1" data-d="lq" value="${esc(D.lq??1)}"></div>
+<button class="btn p" data-a="la">Registrar préstamo</button></div></div>
+<h2>Sin devolver (${L(0).length})</h2>${L(0).map(row).join('')||'<p class="mut">No hay préstamos pendientes.</p>'}
+<h2>Devueltos</h2>${L(1).map(row).join('')||'<p class="mut">Aún no hay préstamos devueltos.</p>'}`}
+
+function srvV(){return`${dirty?'<div class="card" style="border-color:var(--warn)"><b style="color:var(--warn)">Tienes cambios sin publicar.</b> Los clientes no los verán hasta que pulses “Publicar cambios”.</div>':''}
+<h2>WhatsApp del negocio</h2><div class="card"><label>Número con código de país, sin el signo + (ej. 593999999999)</label><input data-w="1" inputmode="numeric" value="${esc(PUB.wa)}"></div>
+<h2>Servicios que ven tus clientes</h2><div class="grid">${PUB.sv.map((s,i)=>`<div class="card ed">${s.img?`<img src="${esc(s.img)}" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px">`:`<div class="th" style="width:100%;height:auto;aspect-ratio:4/3;display:grid;place-items:center;font-size:2.5rem">${esc(s.e||'🎉')}</div>`}
+<input type="file" accept="image/*" data-f="s" data-i="${i}"><div><label>Nombre</label><input data-s="${i}:t" value="${esc(s.t)}"></div><div><label>Descripción</label><textarea rows="3" data-s="${i}:d">${esc(s.d)}</textarea></div><button class="btn d" data-a="sd" data-i="${i}">Quitar servicio</button></div>`).join('')}</div>
+<p style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn" data-a="sa">Agregar servicio</button><button class="btn p" data-a="sp">Publicar cambios</button></p>`}
+
+/* ---------- EVENTOS DE LA PÁGINA ---------- */
+$('#app').oninput=e=>{const t=e.target,d=t.dataset;if(d.d)D[d.d]=t.value;if(d.s){const[i,k]=d.s.split(':');PUB.sv[i][k]=t.value;dirty=1}if(d.w){PUB.wa=t.value.replace(/\D/g,'');dirty=1}};
+$('#app').onchange=async e=>{const t=e.target;if(t.type!='file'||!t.files[0])return;const img=await shrink(t.files[0]);if(!img)return toast('No se pudo leer esa imagen.');if(t.dataset.f=='p')D.img=img;else{PUB.sv[+t.dataset.i].img=img;dirty=1}render()};
+$('#app').onclick=async e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,i=b.dataset.i;
+if(a=='go')return go(i);
+if(a=='c'){if(!PUB.wa)return toast('Este servicio aún no tiene número de contacto.');return void window.open('https://wa.me/'+PUB.wa+'?text='+encodeURIComponent('Hola, deseo información sobre este servicio: '+PUB.sv[i].t),'_blank','noopener')}
+if(a=='login'){const u=(D.u||'').trim(),p=D.p||'',c=cred();
+ if(!c){if(u.length<3||p.length<6||p!=D.p2)return toast('Usuario de 3 o más letras y contraseña de 6 o más caracteres, iguales en ambos campos.');localStorage.setItem(CK,JSON.stringify({u,h:await H(u,p)}))}
+ else if(c.u!=u||c.h!=await H(u,p))return toast('Usuario o contraseña incorrectos.');
+ sessionStorage.setItem('adm','1');return go('inv')}
+if(a=='logout'){sessionStorage.removeItem('adm');return go('pub')}
+if(!isAdm())return;
+if(a=='addp'){const n=(D.pn||'').trim();if(!n)return toast('Escribe el nombre del producto.');DB.prods.push({id:Date.now(),n,c:(D.pc||'').trim()||'General',q:Math.max(1,+D.pq||1),img:D.img||''});save();D={items:[]};return render()}
+const p=P(i);
+if(a=='pinc'){p.q++}
+else if(a=='pdec'){if(p.q<=1||av(p)<1)return toast('No se puede restar: las unidades restantes están alquiladas o prestadas.');p.q--}
+else if(a=='pdel'){if(outEv(p.id)+outLn(p.id))return toast('Este producto está alquilado o prestado. Recupéralo antes de eliminarlo.');DB.prods=DB.prods.filter(x=>x!==p)}
+else if(a=='ei'){const id=D.ip||DB.prods[0]?.id,pr=P(id),q=Math.max(1,+D.iq||1);if(!pr)return toast('Primero agrega productos al inventario.');const used=D.items.filter(x=>x.p==id).reduce((s,x)=>s+x.q,0);if(q+used>av(pr))return toast(`Solo quedan ${av(pr)-used} unidades de ${pr.n}.`);const ex=D.items.find(x=>x.p==id);ex?ex.q+=q:D.items.push({p:id,q});D.iq=1}
+else if(a=='er'){D.items.splice(+i,1)}
+else if(a=='es'){if(!(D.cl||'').trim()||!(D.en||'').trim())return toast('Escribe el cliente y el nombre del evento.');if(!D.items.length)return toast('Agrega al menos un producto al evento.');DB.events.push({id:Date.now(),cl:D.cl.trim(),n:D.en.trim(),d:D.ed||'',pl:(D.ep||'').trim(),items:D.items,st:'pend'});save();D={items:[]};return render()}
+else if(a=='edone'||a=='eback'){DB.events.find(x=>x.id==i).st=a=='edone'?'done':'ret'}
+else if(a=='edel'){DB.events=DB.events.filter(x=>x.id!=i)}
+else if(a=='la'){const id=D.lp||DB.prods[0]?.id,pr=P(id),q=Math.max(1,+D.lq||1);if(!(D.lw||'').trim())return toast('Escribe quién se lleva el producto.');if(!pr)return toast('Primero agrega productos al inventario.');if(q>av(pr))return toast(`Solo quedan ${av(pr)} unidades de ${pr.n}.`);DB.loans.push({id:Date.now(),who:D.lw.trim(),p:id,q,o:today(),b:''});save();D={items:[]};return render()}
+else if(a=='lb'){DB.loans.find(x=>x.id==i).b=today()}
+else if(a=='sa'){PUB.sv.push({t:'Nuevo servicio',d:'Describe el servicio.',e:'🎉',img:''});dirty=1}
+else if(a=='sd'){PUB.sv.splice(+i,1);dirty=1}
+else if(a=='sp'){try{const ar=window.claude&&await claude.use('artifact').catch(()=>null);
+ const c=document.documentElement.cloneNode(true);c.querySelector('#pubdata').textContent=JSON.stringify(PUB).replace(/</g,'\\u003c');c.querySelectorAll('[data-dyn]').forEach(x=>x.innerHTML='');
+ const h='<!DOCTYPE html>\n'+c.outerHTML;
+ if(!ar){const l=document.createElement('a');l.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));l.download='index.html';l.click();dirty=0;render();return toast('Se descargó index.html con tus servicios. Súbelo a tu hosting para que tus clientes vean los cambios.')}
+ dirty=0;await ar.publish(h)}catch(x){dirty=1;toast(x&&x.code=='conflict'?'Otra versión se publicó antes. Recarga y repite el cambio.':'No se pudo publicar. Inténtalo otra vez.')}return}
+save();render()};
+$('#toast').hidden=true;render();
+</script>
+</body>
+</html>

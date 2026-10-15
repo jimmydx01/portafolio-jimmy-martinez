@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jimmy Martínez Brito | Ingeniero de Software</title>
+  <meta name="description" content="Portafolio de Jimmy Antonio Martínez Brito, Ingeniero de Software. Desarrollo backend con Python, Django y Flask, y soporte técnico IT. Milagro, Ecuador.">
+  <meta name="theme-color" content="#0C1A3F">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C1A3F'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='800' text-anchor='middle' fill='%23FFC72C'%3EJM%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Aplica el tema guardado antes de pintar la página (evita parpadeo) -->
+  <script>
+    (function () {
+      var t = 'claro';
+      try {
+        t = localStorage.getItem('tema') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'oscuro' : 'claro');
+      } catch (e) {}
+      document.documentElement.dataset.tema = t;
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: 'rgb(var(--paper) / <alpha-value>)',
+            surface: 'rgb(var(--surface) / <alpha-value>)',
+            ink: 'rgb(var(--ink) / <alpha-value>)',
+            muted: 'rgb(var(--muted) / <alpha-value>)',
+            line: 'rgb(var(--line) / <alpha-value>)',
+            brand: 'rgb(var(--brand) / <alpha-value>)',
+            'on-brand': 'rgb(var(--on-brand) / <alpha-value>)',
+            sun: 'rgb(var(--sun) / <alpha-value>)',
+            band: 'rgb(var(--band) / <alpha-value>)',
+            'on-band': 'rgb(var(--on-band) / <alpha-value>)'
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            body: ['Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body class="font-body antialiased">
+  <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-on-brand">Saltar al contenido</a>
+
+  <!-- ======================= NAVEGACIÓN ======================= -->
+  <header class="fixed inset-x-0 top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
+    <nav class="mx-auto flex h-16 max-w-6xl items-center gap-3 px-5" aria-label="Principal">
+      <a href="#inicio" class="mr-auto flex items-center gap-3 font-display font-bold">
+        <span class="grid h-9 w-9 place-items-center rounded-[10px] bg-ink text-sm font-extrabold text-paper">JM</span>
+        <span class="hidden sm:inline">Jimmy Martínez</span>
+      </a>
+
+      <ul class="hidden items-center gap-1 lg:flex">
+        <li><a class="nav-link" data-nav="sobre-mi" href="#sobre-mi">Sobre mí</a></li>
+        <li><a class="nav-link" data-nav="habilidades" href="#habilidades">Habilidades</a></li>
+        <li><a class="nav-link" data-nav="proyectos" href="#proyectos">Proyectos</a></li>
+        <li><a class="nav-link" data-nav="experiencia" href="#experiencia">Experiencia</a></li>
+        <li><a class="nav-link" data-nav="certificados" href="#certificados">Certificados</a></li>
+        <li><a class="nav-link" data-nav="contacto" href="#contacto">Contacto</a></li>
+      </ul>
+
+      <button id="btnTema" type="button" class="icon-btn" aria-label="Cambiar entre tema claro y oscuro">
+        <i data-icon="moon" class="ico ico-moon"></i><i data-icon="sun" class="ico ico-sun"></i>
+      </button>
+
+      <a data-cv href="CV_Martinez_Jimmy_ES.pdf" download class="btn btn-primary btn-sm" aria-label="Descargar CV">
+        <i data-icon="download"></i>
+        <span class="hidden sm:inline">Descargar CV</span><span class="sm:hidden">CV</span>
+      </a>
+
+      <button id="btnMenu" type="button" class="icon-btn lg:hidden" aria-expanded="false" aria-controls="panelMenu" aria-label="Abrir menú">
+        <i data-icon="menu" class="ico"></i>
+      </button>
+    </nav>
+
+    <div id="panelMenu" class="hidden border-t border-line bg-paper lg:hidden">
+      <ul class="mx-auto max-w-6xl px-5 py-3">
+        <li><a class="nav-link py-3" data-nav="sobre-mi" href="#sobre-mi">Sobre mí</a></li>
+        <li><a class="nav-link py-3" data-nav="habilidades" href="#habilidades">Habilidades</a></li>
+        <li><a class="nav-link py-3" data-nav="proyectos" href="#proyectos">Proyectos</a></li>
+        <li><a class="nav-link py-3" data-nav="experiencia" href="#experiencia">Experiencia</a></li>
+        <li><a class="nav-link py-3" data-nav="certificados" href="#certificados">Certificados</a></li>
+        <li><a class="nav-link py-3" data-nav="contacto" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="contenido">
+   
+
+    <!-- ======================= INICIO ======================= -->
+    <section id="inicio" class="relative isolate overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
+      <div id="videoFondo" class="hero-video" aria-hidden="true"><div class="hero-velo"></div></div>
+      <div class="mx-auto grid max-w-6xl items-center gap-14 px-5 lg:grid-cols-12">
+
+        <div class="order-2 lg:order-1 lg:col-span-7">
+          <p class="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm text-muted">
+            <i data-icon="pin" class="ico h-4 w-4"></i>Milagro, Guayas, Ecuador
+          </p>
+
+          <h1 class="mt-6 font-display font-extrabold leading-[0.95] tracking-tight text-cyan-400" style="font-size: clamp(2.4rem, 7.2vw, 4.5rem);">
+            <span class="block">Jimmy Antonio</span>
+            <span class="block">Martínez Brito</span>
+          </h1>
+
+          <p class="mt-5 font-display text-xl font-bold md:text-2xl text-cyan-400">Ingeniero de Software</p>
+          <p class="mt-3 max-w-xl text-lg leading-relaxed text-muted text-white">
+            Desarrollo aplicaciones web con Python, Django y Flask, y llevo años resolviendo problemas de soporte técnico IT.
+          </p>
+
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a data-wa href="#" target="_blank" rel="noopener" class="btn btn-primary">
+              <i data-icon="whatsapp"></i>Contáctame
+            </a>
+            <a href="#proyectos" class="btn btn-ghost text-white">Ver proyectos</a>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2 lg:col-span-5">
+          <div class="relative mx-auto w-full max-w-[21rem] lg:max-w-[23rem]">
+            <div class="absolute inset-0 translate-x-4 translate-y-4 rotate-3 rounded-[28px] bg-sun" aria-hidden="true"></div>
+            <div class="foto-marco relative">
+              <button id="flip" type="button" class="flip" aria-pressed="false" aria-label="Voltear la foto para ver otra imagen">
+                <span class="flip-inner">
+                  <span class="flip-face">
+                    <span class="ph"><strong>JM</strong><span>Foto profesional<br>img/foto-profesional.jpg</span></span>
+                    <img id="fotoFrente" src="img/cuerpo_2026.png" alt="Jimmy Martínez Brito con traje, foto profesional">
+                  </span>
+                  <span class="flip-face flip-back">
+                    <span class="ph"><strong>JM</strong><span>Segunda foto<br>img/foto-casual.jpg</span></span>
+                    <img id="fotoReverso" src="img/casual.jpg" alt="Jimmy Martínez Brito en una foto casual">
+                  </span>
+                </span>
+                <span class="flip-hint"><i data-icon="rotar"></i>Toca para girar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= SOBRE MÍ ======================= -->
+    <section id="sobre-mi" class="pb-20 md:pb-28">
+      <div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-12">
+        <div class="lg:col-span-7">
+          <h2 class="font-display text-3xl font-extrabold tracking-tight md:text-5xl">Sobre mí</h2>
+          <div class="mt-6 max-w-[62ch] space-y-5 text-lg leading-relaxed">
+            <p>Soy Ingeniero de Software graduado de la Universidad Estatal de Milagro en 2024. Desarrollo aplicaciones web con Python, Django y Flask, y trabajo con bases de datos MySQL. He construido sistemas para clientes reales, como un gestor de pedidos y menú para restaurantes y un inventario para un negocio de eventos.</p>
+            <p>Mi camino empezó en el soporte técnico IT: mesa de servicios, diagnóstico de hardware y software, redes LAN y atención a usuarios en empresas. De ahí me quedó el hábito de resolver problemas con calma, documentar cada solución y pensar en la persona que usa el sistema.</p>
+            <p>Hoy sigo estudiando para crecer como desarrollador backend con Python y tecnologías de IA.</p>
+          </div>
+        </div>
+
+        <dl class="divide-y divide-line self-start rounded-[18px] border border-line bg-surface lg:col-span-5">
+          <div class="flex gap-4 p-5">
+            <i data-icon="pin" class="ico mt-0.5 text-brand"></i>
+            <div><dt class="text-sm text-muted">Ubicación</dt><dd class="font-medium">Milagro, Guayas, Ecuador</dd></div>
+          </div>
+          <div class="flex gap-4 p-5">
+            <i data-icon="birrete" class="ico mt-0.5 text-brand"></i>
+            <div><dt class="text-sm text-muted">Formación</dt><dd class="font-medium">Ingeniería de Software, Universidad Estatal de Milagro (2024)</dd></div>
+          </div>
+          <div class="flex gap-4 p-5">
+            <i data-icon="codigo" class="ico mt-0.5 text-brand"></i>
+            <div><dt class="text-sm text-muted">Trabajo actual</dt><dd class="font-medium">Desarrollador web freelance con Django y Flask</dd></div>
+          </div>
+          <div class="flex gap-4 p-5">
+            <i data-icon="llave" class="ico mt-0.5 text-brand"></i>
+            <div><dt class="text-sm text-muted">Me interesan</dt><dd class="font-medium">Roles de desarrollo backend y de soporte técnico remoto</dd></div>
+          </div>
+        </dl>
+      </div>
+
+    </section>
+
+    <!-- ======================= HABILIDADES ======================= -->
+    <section id="habilidades" class="border-y border-line bg-surface py-20 md:py-28">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 class="font-display text-3xl font-extrabold tracking-tight md:text-5xl">Habilidades</h2>
+
+        <div id="tilesNucleo" class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+
+        <div id="acordeones" class="mt-14 grid items-start gap-5 md:grid-cols-2"></div>
+
+        <div class="mt-16">
+          <h3 class="font-display text-2xl font-bold">Complementarias</h3>
+          <ul id="compGrid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PROYECTOS ======================= -->
+    <section id="proyectos" class="py-20 md:py-28">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 class="font-display text-3xl font-extrabold tracking-tight md:text-5xl">Proyectos</h2>
+        <p class="mt-4 max-w-xl text-lg text-muted">Sistemas que construí para clientes reales y para la universidad.</p>
+        <div id="galeriaProyectos" class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </div>
+    </section>
+
+    <!-- ======================= EXPERIENCIA ======================= -->
+    <section id="experiencia" class="on-band bg-band py-20 text-on-band md:py-28">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 class="font-display text-3xl font-extrabold tracking-tight md:text-5xl">Experiencia</h2>
+        <div class="tl mt-14">
+          <span class="tl-fill" aria-hidden="true"></span>
+          <ol id="lineaTiempo"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CERTIFICADOS ======================= -->
+    <section id="certificados" class="py-20 md:py-28">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 class="font-display text-3xl font-extrabold tracking-tight md:text-5xl">Certificados</h2>
+        <p class="mt-4 max-w-xl text-lg text-muted">Cursos y certificaciones. Toca uno para verlo en grande.</p>
+        <div id="galeriaCertificados" class="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 md:grid-cols-3 lg:grid-cols-5"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= PIE / CONTACTO ======================= -->
+  <footer id="contacto" class="on-band bg-band text-on-band">
+    <div class="flex h-1.5" aria-hidden="true">
+      <span class="flex-[2]" style="background:#FFC72C"></span>
+      <span class="flex-1" style="background:#2350F0"></span>
+      <span class="flex-1" style="background:#E4433B"></span>
+    </div>
+    <div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-2">
+      <div>
+        <p class="font-display text-3xl font-extrabold leading-tight md:text-4xl">Jimmy Antonio<br>Martínez Brito</p>
+        <p class="mt-3 text-lg text-on-band/75">Ingeniero de Software</p>
+        <p class="mt-1 text-on-band/75">Milagro, Guayas, Ecuador</p>
+      </div>
+      <ul id="listaRedes" class="grid content-start gap-3"></ul>
+    </div>
+    <div class="border-t border-on-band/15">
+      <p class="mx-auto max-w-6xl px-5 py-5 text-sm text-on-band/65">© <span id="anio"></span> Jimmy Antonio Martínez Brito. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Visor de certificados -->
+  <dialog id="visor" class="m-auto w-[min(92vw,60rem)] rounded-2xl bg-surface p-0 text-ink">
+    <div class="relative">
+      <button id="visorCerrar" type="button" class="icon-btn absolute right-3 top-3 z-10 bg-surface" aria-label="Cerrar visor"><i data-icon="cerrar" class="ico"></i></button>
+      <img id="visorImg" class="max-h-[78vh] w-full bg-white object-contain" alt="">
+      <p id="visorTitulo" class="p-5 font-display text-lg font-bold"></p>
+    </div>
+  </dialog>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
