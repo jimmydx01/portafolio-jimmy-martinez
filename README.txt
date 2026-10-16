@@ -28,10 +28,12 @@ Dentro de `PROYECTOS`, copia una línea `{ ... }` y cambia:
 - `titulo`
 - `descripcion`
 - `imagen`
+- `imagenes` — lista de capturas para el carrusel; puedes agregar más rutas a la lista.
+- `video` — opcional; por ejemplo `video/gestor-pedidos.mp4`. Déjalo como `""` si no tienes video.
 - `enlace`
 - `etiquetas`
 
-Luego coloca la captura en `img/proyectos/`.
+Luego coloca las capturas en `img/proyectos/` y el video en `video/`. Al seleccionar una captura se abre la galería ampliada; los botones de la tarjeta abren el proyecto o reproducen el video.
 
 ## Para publicar
 
