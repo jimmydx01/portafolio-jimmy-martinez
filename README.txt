@@ -4,14 +4,16 @@
 
 - `index.html` — estructura y contenido HTML de la página.
 - `css/styles.css` — estilos CSS personalizados.
-- `js/app.js` — datos editables + comportamiento/interactividad.
+- `js/data.js` — información editable del portafolio.
+- `js/helpers.js` — iconos y funciones compartidas.
+- `js/app.js` — renderizado e interactividad de la página.
 - `img/` — fotos, capturas de proyectos y certificados.
 - `video/` — video de fondo opcional.
 - `CV_Martinez_Jimmy_ES.pdf` — CV que descarga el botón del portafolio.
 
 ## Dónde editar información
 
-En `js/app.js` busca:
+En `js/data.js` busca:
 
 - `PERFIL` → WhatsApp y nombre del CV.
 - `NUCLEO` → Python, Django, Flask, MySQL.
